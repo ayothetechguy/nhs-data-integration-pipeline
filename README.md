@@ -102,3 +102,24 @@ This project complements my portfolio of healthcare AI systems:
 ## License
 
 Synthetic data for educational and research purposes only.
+
+## Data Files
+
+Data files are not included in the repository due to size constraints. Generate synthetic data locally:
+```bash
+pip install -r requirements.txt --break-system-packages
+python scripts/generate_pas_data.py
+python scripts/generate_ehr_data.py
+python scripts/generate_lims_data.py
+python scripts/generate_appointments_data.py
+```
+
+This will create approximately 207MB of synthetic NHS data in `data/sources/` directory.
+
+Expected output:
+- 50,000 patient records (PAS)
+- 100,000 clinical encounters (EHR)
+- 350,320 lab test results (LIMS)
+- 120,000 appointments
+
+Total: 620,320 records across 4 source systems
