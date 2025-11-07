@@ -298,3 +298,34 @@ streamlit run dashboard/pipeline_monitor.py
 
 **Note:** Dashboard requires local data generation as the warehouse file (207MB) is excluded from Git for size constraints. Screenshots above demonstrate full functionality with complete integrated dataset.
 
+
+## 🌐 Deployment Status
+
+**GitHub Repository:** https://github.com/ayothetechguy/nhs-data-integration-pipeline
+
+**Streamlit Cloud:** Dashboard deployed but requires local data generation due to warehouse file size (207MB excluded from Git). Screenshots above demonstrate full functionality.
+
+**To run locally:**
+1. Clone repository
+2. Generate data (see instructions above)
+3. Run ETL pipeline
+4. Launch dashboard: `streamlit run dashboard/pipeline_monitor.py`
+
+---
+
+## 👨‍💻 Author
+
+**Ayoolumi Melehon**
+- MSc Artificial Intelligence, University of Stirling
+- CompTIA Data+ Certified
+- Healthcare Professional (3 years experience in end-of-life, palliative, and support services)
+- Email: ayoolumimelehon@gmail.com
+- Portfolio: https://ayofemimelehon.info
+- GitHub: https://github.com/ayothetechguy
+
+---
+
+## 📄 License
+
+This project uses synthetic data for educational and research purposes only. All patient data is artificially generated and does not represent real individuals.
+
