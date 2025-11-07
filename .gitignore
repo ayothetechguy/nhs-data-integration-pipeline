@@ -3,3 +3,7 @@ data/staging/
 data/warehouse/
 *.csv
 *.json
+
+# Data warehouse (too large for Git)
+data/warehouse/*.duckdb
+data/warehouse/*.duckdb.wal

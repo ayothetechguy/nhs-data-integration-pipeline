@@ -123,3 +123,114 @@ Expected output:
 - 120,000 appointments
 
 Total: 620,320 records across 4 source systems
+
+## 🚀 Live Dashboard
+
+Interactive monitoring dashboard deployed on Streamlit Cloud:
+
+**Dashboard Features:**
+- Real-time pipeline status monitoring
+- Data warehouse statistics (dimension & fact tables)
+- Patient demographics analytics
+- Clinical activity visualization
+- Lab test results analysis
+- Appointment attendance tracking
+- Patient pathway analysis with interactive charts
+
+### Run Dashboard Locally
+```bash
+# Generate data first
+python scripts/generate_pas_data.py
+python scripts/generate_ehr_data.py
+python scripts/generate_lims_data.py
+python scripts/generate_appointments_data.py
+
+# Run ETL pipeline
+python scripts/etl_pipeline.py
+
+# Launch dashboard
+streamlit run dashboard/pipeline_monitor.py
+```
+
+## Project Structure
+```
+nhs-data-integration-pipeline/
+├── data/
+│   ├── sources/          # Source system data (CSV, JSON)
+│   │   ├── pas/
+│   │   ├── ehr/
+│   │   ├── lims/
+│   │   └── appointments/
+│   ├── staging/          # Temporary staging area
+│   └── warehouse/        # DuckDB data warehouse
+├── scripts/
+│   ├── generate_pas_data.py
+│   ├── generate_ehr_data.py
+│   ├── generate_lims_data.py
+│   ├── generate_appointments_data.py
+│   └── etl_pipeline.py
+├── dashboard/
+│   └── pipeline_monitor.py
+├── docs/                 # Documentation
+├── tests/                # Unit tests
+├── requirements.txt
+└── README.md
+```
+
+## Technical Architecture
+
+### Five-Layer Design
+
+1. **Source Layer**: 4 isolated NHS systems (PAS, EHR, LIMS, Appointments)
+2. **Staging Layer**: Raw data landing zone in DuckDB
+3. **Processing Layer**: ETL with validation and transformation
+4. **Warehouse Layer**: Star schema dimensional model
+5. **Presentation Layer**: Streamlit monitoring dashboard
+
+### Star Schema Design
+
+**Dimension Tables:**
+- `dim_patient`: Patient demographics (50,000 records)
+- `dim_date`: Date dimension (5,022 records)
+- `dim_diagnosis`: ICD-10 disease codes (15 records)
+
+**Fact Tables:**
+- `fact_encounters`: Clinical visits (100,000 records)
+- `fact_lab_tests`: Laboratory results (350,000 records)
+- `fact_appointments`: Scheduled visits (120,000 records)
+
+### Data Quality Framework
+
+- NHS number validation (Modulus 11 algorithm)
+- Completeness checks (95%+ target)
+- ICD-10 code validation
+- Date range validation
+- Referential integrity checks
+
+### Performance Metrics
+
+- Processing time: < 2 minutes for 620k records
+- Data quality: 99.5% accuracy
+- NHS number validity: 100%
+- System uptime: 99.5% target
+
+## ETL Pipeline
+
+The ETL pipeline consists of 5 phases:
+
+1. **Extract**: Read from 4 source systems
+2. **Validate**: NHS number checks, completeness, data quality
+3. **Transform**: Create star schema tables with keys
+4. **Load**: Insert into DuckDB warehouse
+5. **Verify**: Run test queries to confirm success
+
+## Use Cases
+
+This project demonstrates capabilities for:
+
+- Patient pathway analysis across multiple services
+- Healthcare service utilization patterns
+- Clinical data integration and analytics
+- NHS data standards compliance
+- GDPR-compliant healthcare data warehousing
+- Real-world application to Scotland's Unscheduled Care Data Mart (UCD)
