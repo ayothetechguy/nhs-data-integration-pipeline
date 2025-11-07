@@ -247,3 +247,54 @@ The Streamlit dashboard requires local data generation as the warehouse file (20
 4. Launch dashboard with `streamlit run dashboard/pipeline_monitor.py`
 
 Alternatively, view screenshots in the repository showing the full dashboard functionality.
+
+## 📊 Dashboard Screenshots
+
+### Pipeline Status & Overview
+![Pipeline Status](docs/screenshots/01-pipeline-status.png)
+*Real-time pipeline monitoring showing operational status, processing time (< 2 minutes), and data quality (99.5%). Displays warehouse summary with 625,378 total records across 4 integrated NHS systems.*
+
+### Data Warehouse Architecture
+![Warehouse Tables](docs/screenshots/02-warehouse-fact-tables.png)
+*Star schema implementation with fact tables: 350k lab tests, 120k appointments, 100k clinical encounters. Dimensional model enables efficient patient pathway queries.*
+
+### Clinical Analytics & Lab Tests
+![Clinical Analytics](docs/screenshots/03-clinical-lab-analytics.png)
+*Interactive visualizations showing encounter distribution by type (Outpatient, GP Visit, Inpatient, Emergency) and laboratory test analytics with normal vs abnormal result tracking.*
+
+---
+
+## 🚀 Running the Dashboard
+
+**Prerequisites:**
+```bash
+pip install -r requirements.txt --break-system-packages
+```
+
+**Generate Data & Run Pipeline:**
+```bash
+# Generate synthetic NHS data (620k records)
+python scripts/generate_pas_data.py
+python scripts/generate_ehr_data.py
+python scripts/generate_lims_data.py
+python scripts/generate_appointments_data.py
+
+# Run ETL pipeline to create warehouse
+python scripts/etl_pipeline.py
+
+# Launch monitoring dashboard
+streamlit run dashboard/pipeline_monitor.py
+```
+
+**Dashboard Features:**
+- ✅ Real-time pipeline status monitoring
+- ✅ Data warehouse statistics (6 tables, 625k+ records)
+- ✅ Patient demographics analytics
+- ✅ Clinical activity visualization by encounter type and department
+- ✅ Laboratory test distribution and abnormal result tracking
+- ✅ Appointment scheduling patterns and attendance rates
+- ✅ Patient pathway analysis across multiple services
+- ✅ Interactive filtering and drill-down capabilities
+
+**Note:** Dashboard requires local data generation as the warehouse file (207MB) is excluded from Git for size constraints. Screenshots above demonstrate full functionality with complete integrated dataset.
+
