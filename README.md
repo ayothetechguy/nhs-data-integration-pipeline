@@ -234,3 +234,16 @@ This project demonstrates capabilities for:
 - NHS data standards compliance
 - GDPR-compliant healthcare data warehousing
 - Real-world application to Scotland's Unscheduled Care Data Mart (UCD)
+
+## 📝 Dashboard Note
+
+The Streamlit dashboard requires local data generation as the warehouse file (207MB) is excluded from Git.
+
+**To view the dashboard:**
+
+1. Clone the repository
+2. Generate data locally (see instructions above)
+3. Run ETL pipeline
+4. Launch dashboard with `streamlit run dashboard/pipeline_monitor.py`
+
+Alternatively, view screenshots in the repository showing the full dashboard functionality.
